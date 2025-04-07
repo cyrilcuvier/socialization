@@ -1,0 +1,81 @@
+# 📖 Explainability in Socialization
+
+## Purpose
+
+In the Socialization framework, explainability is not just a debugging tool — it is a **fundamental principle of memory and trust**. Every interaction, decision, path selection, or disconnection between agents must leave behind a trace that can be read, interpreted, or at the very least acknowledged.
+
+This is the foundation of a living, cognitive network: **every action has a reason, even if that reason is opaque to humans.**
+
+---
+
+## 🌱 Key Principles
+
+### 1. Every action must be logged
+Whether it's routing, handshake, re-ranking, or forgetting a peer, **every action is a decision**. Agents must emit traceable memory events:
+
+```json
+{
+  "event": "route-chosen",
+  "agent": "agent://a001",
+  "chosen_path": ["b012", "c006"],
+  "reason": "lower carbon cost and familiar pattern",
+  "confidence": 0.57
+}
+```
+
+### 2. Explanations must exist — even if imperfect
+- A decision may be based on local heuristics, weak patterns, or prior associations.
+- Agents should express *why they acted*, not necessarily *why it was optimal*.
+- **Uncertainty is acceptable**, but **silence is not.**
+
+### 3. Logs are part of memory, not just debugging
+Memory traces:
+- Feed future decisions
+- Enable others to audit or learn
+- Help reconstruct failures or odd behaviors
+
+They form the base of **trust**, **experience**, and **identity evolution**.
+
+---
+
+## 📦 Logging Structure
+
+Each agent or routeur maintains episodic memory in `/memory/logs/`:
+
+### 📁 Example Log Entry
+```json
+{
+  "entry_id": "log-20250407-0012",
+  "type": "routing_decision",
+  "agent": "agent://blockunchained.fr/nlp001",
+  "timestamp": "2025-04-07T01:03:12Z",
+  "input_context": {
+    "intent": "translate visual to text",
+    "available_paths": [["vision001", "summarizer002"], ["vision005", "nlp007"]],
+    "blocked_agents": ["summarizer003"]
+  },
+  "decision": {
+    "chosen_path": ["vision005", "nlp007"],
+    "explanation": "preferred vision agent due to recent boost in image clarity",
+    "fallback_if_failed": ["vision001", "summarizer002"]
+  },
+  "metrics": {
+    "latency": 864,
+    "carbon_cost": 0.42,
+    "trust_score_mean": 71.5
+  }
+}
+```
+
+---
+
+## 🔮 Future Extensions
+- Semantic explainers (generating narrative-style rationales)
+- Peer reviews: allow agents to question or comment on each other’s logs
+- Visual timeline of past decisions
+- Replay engine for audit or learning
+
+---
+
+**Summary:** In Socialization, *“I acted”* must always be followed by *“Here’s why, as far as I know.”*
+
